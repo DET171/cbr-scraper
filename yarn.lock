@@ -289,6 +289,9 @@ __metadata:
   resolution: "cbr-scraper@workspace:."
   dependencies:
     "@types/yargs": ^17.0.24
+    chalk: ^5.2.0
+    consola: ^2.15.3
+    csv-generate: ^4.2.2
     eslint: ^8.37.0
     eslint-config-berry: ^0.15.5
     got: ^12.6.0
@@ -304,6 +307,13 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "chalk@npm:5.2.0"
+  checksum: 03d8060277de6cf2fd567dc25fcf770593eb5bb85f460ce443e49255a30ff1242edd0c90a06a03803b0466ff0687a939b41db1757bec987113e83de89a003caa
   languageName: node
   linkType: hard
 
@@ -350,6 +360,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"consola@npm:^2.15.3":
+  version: 2.15.3
+  resolution: "consola@npm:2.15.3"
+  checksum: 8ef7a09b703ec67ac5c389a372a33b6dc97eda6c9876443a60d76a3076eea0259e7f67a4e54fd5a52f97df73690822d090cf8b7e102b5761348afef7c6d03e28
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.2":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
@@ -367,6 +384,13 @@ __metadata:
   dependencies:
     rrweb-cssom: ^0.6.0
   checksum: 31f694dfed9998ed93570fe539610837b878193dd8487c33cb12db8004333c53c2a3904166288bbec68388c72fb01014d46d3243ddfb02fe845989d852c06f27
+  languageName: node
+  linkType: hard
+
+"csv-generate@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "csv-generate@npm:4.2.2"
+  checksum: f262698c92376261c928779335850c583f5d6ea9f2e476ba476ece7c9fb70bdafe634a4f3024721d44e46b7c50d2135d5932fa383f4fbe48dcaa642635052b2f
   languageName: node
   linkType: hard
 
