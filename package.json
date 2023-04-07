@@ -9,10 +9,12 @@
   "dependencies": {
     "@types/yargs": "^17.0.24",
     "chalk": "^5.2.0",
+    "cli-table": "^0.3.11",
     "consola": "^2.15.3",
-    "csv-generate": "^4.2.2",
+    "csv": "^6.2.8",
     "got": "^12.6.0",
     "jsdom": "^21.1.1",
+    "markdown-table": "^3.0.3",
     "yargs": "^17.7.1"
   },
   "devDependencies": {

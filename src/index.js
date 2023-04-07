@@ -7,7 +7,11 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 import chalk from 'chalk';
 import console from 'consola';
+import fs from 'fs/promises';
 import stdConsole from 'console';
+import Table from 'cli-table';
+import { stringify } from 'csv';
+import { markdownTable } from 'markdown-table';
 
 // Parse command line arguments
 const argv = yargs(hideBin(process.argv))
@@ -26,6 +30,8 @@ const argv = yargs(hideBin(process.argv))
 		type: 'string',
 		description: `Output format
 		- stdout
+		- json
+		- md
 		- csv`,
 		default: 'stdout',
 	})
@@ -54,7 +60,7 @@ for (const username of usernames) {
 	for (const problem of problems) {
 
 		// Log problem being fetched
-		console.info(chalk.yellow(`  Fetching ${username}'s submissions for ${problem}`));
+		console.info(chalk.cyan(`  Fetching ${username}'s submissions for ${problem}`));
 
 		// Get submissions page
 		const res = (await got(`https://codebreaker.xyz/submissions?problem=${problem}&username=${username}`)).body;
@@ -88,12 +94,55 @@ for (const username of usernames) {
 	}
 }
 
-// Print scores object
+// empty line
+console.log();
 
 
+// Output scores
 if (outputFormat === 'stdout') {
-	stdConsole.table(scores);
+	const table = new Table({
+		head: ['Username', ...problems],
+	});
+	for (const username in scores) {
+		table.push([username, ...problems.map(problem => {
+			const score = scores[username][problem];
+			if (score === 0) {
+				return chalk.red(score);
+			}
+			if (score === 100) {
+				return chalk.green(score);
+			}
+			else {
+				return chalk.yellow(score);
+			}
+		})]);
+	}
+
+	console.log(table.toString());
 }
+
+else if (outputFormat === 'json') {
+	await fs.writeFile('./scores.json', JSON.stringify(scores, null, 2));
+	console.success('Saved scores to scores.json!');
+}
+
 else if (outputFormat === 'csv') {
-	console.error('Not implemented yet!');
+	// eslint-disable-next-line no-shadow
+	const csv = stringify(Object.entries(scores).map(([username, scores]) => ({ username, ...scores })), {
+		header: true,
+	});
+
+	await fs.writeFile('./scores.csv', csv);
+	console.success('Saved scores to scores.csv!');
+}
+
+else if (outputFormat === 'md') {
+	const table = markdownTable([
+		['Username', ...problems],
+		// eslint-disable-next-line no-shadow
+		...Object.entries(scores).map(([username, scores]) => [username, ...problems.map(problem => scores[problem])]),
+	]);
+
+	await fs.writeFile('./scores.md', table);
+	console.success('Saved scores to scores.md!');
 }

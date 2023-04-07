@@ -12,7 +12,7 @@ cd cbr-scraper && yarn install
 
 Then, run the script:
 ```bash
-node . -u acertainsomeone 	fanyinuo2021 -p GSS helloworld2
+node . -u acertainsomeone geometric -p GSS helloworld2 beareatrabbit guessproblem3
 ```
 
 ## Options
@@ -23,6 +23,8 @@ Options:
   -p, --problems   List of problems to fetch                  [array] [required]
   -o, --output     Output format
                    - stdout
+									 - json
+									 - md
                    - csv                            [string] [default: "stdout"]
       --help       Show help                                           [boolean]
 ```
