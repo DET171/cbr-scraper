@@ -1,0 +1,19 @@
+{
+  "name": "cbr-scraper",
+  "type": "module",
+	"main": "src/index.js",
+  "packageManager": "yarn@3.3.0",
+	"scripts": {
+		"start": "node ."
+	},
+  "dependencies": {
+    "@types/yargs": "^17.0.24",
+    "got": "^12.6.0",
+    "jsdom": "^21.1.1",
+    "yargs": "^17.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-berry": "^0.15.5"
+  }
+}
