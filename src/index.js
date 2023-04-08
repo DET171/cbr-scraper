@@ -127,10 +127,13 @@ else if (outputFormat === 'json') {
 }
 
 else if (outputFormat === 'csv') {
-	// eslint-disable-next-line no-shadow
-	const csv = stringify(Object.entries(scores).map(([username, scores]) => ({ username, ...scores })), {
-		header: true,
-	});
+	// some problem ids with numbers will get sorted in front of the usernames
+	// usernames have to be in the first column
+	const csv = stringify([
+		['Username', ...problems],
+		// eslint-disable-next-line no-shadow
+		...Object.entries(scores).map(([username, scores]) => [username, ...problems.map(problem => scores[problem])]),
+	]);
 
 	await fs.writeFile('./scores.csv', csv);
 	console.success('Saved scores to scores.csv!');
