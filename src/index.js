@@ -6,7 +6,6 @@ import { hideBin } from 'yargs/helpers';
 import chalk from 'chalk';
 import console from 'consola';
 import fs from 'fs/promises';
-import stdConsole from 'console';
 import Table from 'cli-table';
 import { stringify } from 'csv';
 import { markdownTable } from 'markdown-table';
