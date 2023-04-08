@@ -22,9 +22,6 @@ Options:
   -u, --usernames  List of usernames to fetch                 [array] [required]
   -p, --problems   List of problems to fetch                  [array] [required]
   -o, --output     Output format
-                   - stdout
-									 - json
-									 - md
-                   - csv                            [string] [default: "stdout"]
+                   [string] [choices: "stdout", "md", "csv"] [default: "stdout"]
       --help       Show help                                           [boolean]
 ```
