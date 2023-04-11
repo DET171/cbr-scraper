@@ -9,6 +9,8 @@ import fs from 'fs/promises';
 import Table from 'cli-table';
 import { stringify } from 'csv';
 import { markdownTable } from 'markdown-table';
+import cliProgress from 'cli-progress';
+
 
 const argv = yargs(hideBin(process.argv))
 	.option('usernames', {
@@ -38,13 +40,18 @@ const outputFormat = argv.output;
 
 const scores = {};
 
-for (const username of usernames) {
+const bar = new cliProgress.SingleBar({
+	format: `Fetching scores ${chalk.magenta`{bar}`} {percentage}% | {value}/{total} fetched | ETA: {eta}s`,
+}, cliProgress.Presets.shades_classic);
 
-	console.info(chalk.blue(`Fetching submissions for ${username}`));
+bar.start(problems.length * usernames.length, 0);
+
+
+for (const username of usernames) {
 	scores[username] = {};
 
 	for (const problem of problems) {
-		console.info(chalk.cyan(`  Fetching ${username}'s submissions for ${problem}`));
+		bar.increment();
 
 		const res = (await got(`https://codebreaker.xyz/submissions?problem=${problem}&username=${username}`)).body;
 		const { document } = (new JSDOM(res)).window;
@@ -62,7 +69,10 @@ for (const username of usernames) {
 	}
 }
 
+bar.stop();
+
 console.log();
+
 
 if (outputFormat === 'stdout') {
 	const table = new Table({
