@@ -41,7 +41,7 @@ const outputFormat = argv.output;
 const scores = {};
 
 const bar = new cliProgress.SingleBar({
-	format: `Fetching scores |${chalk.hex('#f8ff29')`{bar}`}| {percentage}% | {value}/{total} fetched | ETA: {eta}s`,
+	format: `Fetching scores |${chalk.hex('#2ed95b')`{bar}`}| {percentage}% | {value}/{total} fetched | ETA: {eta}s`,
 }, cliProgress.Presets.shades_classic);
 
 bar.start(problems.length * usernames.length, 0);
