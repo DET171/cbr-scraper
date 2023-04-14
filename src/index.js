@@ -44,6 +44,7 @@ const bar = new cliProgress.SingleBar({
 	format: `Fetching scores |${chalk.hex('#2ed95b')`{bar}`}| {percentage}% | {value}/{total} fetched | ETA: {eta}s`,
 }, cliProgress.Presets.shades_classic);
 
+console.log();
 bar.start(problems.length * usernames.length, 0);
 
 
