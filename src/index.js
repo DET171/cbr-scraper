@@ -50,9 +50,15 @@ bar.start(problems.length * usernames.length, 0);
 
 for (const username of usernames) {
 	scores[username] = {};
+	const profilePage = (await got(`https://codebreaker.xyz/profile/${username}`)).body;
 
 	for (const problem of problems) {
 		bar.increment();
+
+		if (profilePage.includes(problem)) {
+			scores[username][problem] = 100;
+			continue;
+		}
 
 		const res = (await got(`https://codebreaker.xyz/submissions?problem=${problem}&username=${username}`)).body;
 		const { document } = (new JSDOM(res)).window;
